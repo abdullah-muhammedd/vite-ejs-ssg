@@ -5,21 +5,18 @@ export async function renderLayout({
   title,
   tags,
   content,
+  globalCssHref = null,
 }: {
   title: string;
   tags: string;
   content: string;
+  globalCssHref: string | null;
 }) {
   return renderView('src/layout/layout.view.ejs', {
     title,
     tags,
     content,
-    notifications: [
-      {
-        title: 'Notification Title',
-        message: 'This is a notification message.',
-      },
-    ],
+    globalCssHref,
     ...getLayoutData(),
   });
 }

@@ -5,11 +5,7 @@ export class GlobalStore {
   private listeners: Record<string, Listener<any>[]> = {};
   private static _instance: GlobalStore;
 
-  constructor() {
-    throw new Error(
-      'GlobalStore cannot be instantiated directly. Use GlobalStore.instance instead.'
-    );
-  }
+  private constructor() {}
   /** Singleton instance */
   static get instance(): GlobalStore {
     if (!GlobalStore._instance) {

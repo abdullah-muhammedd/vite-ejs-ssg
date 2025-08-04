@@ -3,6 +3,48 @@
 import { existsSync, promises as fs } from 'fs';
 import * as path from 'path';
 
+async function updateViteConfig(pageName: string) {
+  const viteConfigPath = path.resolve('vite.config.ts');
+  if (!existsSync(viteConfigPath)) {
+    console.log('ℹ vite.config.ts not found - skipping Vite config update');
+    return;
+  }
+
+  let viteConfig = await fs.readFile(viteConfigPath, 'utf-8');
+  const newEntry = `'src/pages/${pageName}/${pageName}.client.ts'`;
+
+  // Check if entry already exists
+  if (viteConfig.includes(newEntry)) {
+    console.log(`ℹ vite.config.ts already includes ${newEntry}`);
+    return;
+  }
+
+  // Find the input array in the config
+  const inputArrayRegex = /input:\s*\[([^\]]*)\]/;
+  const match = viteConfig.match(inputArrayRegex);
+
+  if (match) {
+    // Get existing entries
+    const existingEntries = (match[1] ?? '')
+      .split(',')
+      .map(entry => entry.trim().replace(/['"]/g, ''))
+      .filter(entry => entry.length > 0);
+
+    // Add new entry if not already present
+    if (!existingEntries.includes(newEntry.replace(/['"]/g, ''))) {
+      const updatedInput = `input: [\n${existingEntries.map(e => `      '${e}'`).join(',\n')},\n      ${newEntry}\n    ]`;
+      viteConfig = viteConfig.replace(inputArrayRegex, updatedInput);
+      await fs.writeFile(viteConfigPath, viteConfig, 'utf-8');
+      console.log(`✓ Updated vite.config.ts with ${newEntry}`);
+    }
+  } else {
+    console.log(
+      'ℹ Could not find input array in vite.config.ts - please add manually:'
+    );
+    console.log(`input: [${newEntry}]`);
+  }
+}
+
 async function genPage(pageName: string) {
   const pagesDir = path.resolve('src/pages');
   const pageDir = path.join(pagesDir, pageName);
@@ -84,30 +126,7 @@ export async function render(): Promise<string> {
 
 new HeroComponent().init();`;
   await fs.writeFile(path.join(pageDir, `${pageName}.client.ts`), pageClient);
-
-  // --- Update src/main.ts ---
-  const mainPath = path.resolve('src/main.ts');
-  let mainContent = await fs.readFile(mainPath, 'utf-8');
-  const importLine = `import './pages/${pageName}/${pageName}.client.js';`;
-
-  if (!mainContent.includes(importLine)) {
-    // Insert at the end of imports
-    const lines = mainContent.split('\n');
-    const lastImportIndex = lines
-      .map(l => l.trim())
-      .reduce((idx, line, i) => (line.startsWith('import ') ? i : idx), -1);
-    if (lastImportIndex >= 0) {
-      lines.splice(lastImportIndex + 1, 0, importLine);
-      mainContent = lines.join('\n');
-    } else {
-      mainContent = importLine + '\n' + mainContent;
-    }
-    await fs.writeFile(mainPath, mainContent, 'utf-8');
-    console.log(`✓ Updated src/main.ts to import ${pageName}.client.js`);
-  } else {
-    console.log(`ℹ src/main.ts already imports ${pageName}.client.js`);
-  }
-
+  await updateViteConfig(pageName);
   console.log(`✓ Page '${pageName}' generated`);
 }
 

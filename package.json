@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "bun scripts/validate-structure.ts && vite build && bun scripts/build-html.ts",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "gen:page": "bun scripts/gen-page.ts",
     "gen:component": "bun scripts/gen-component.ts",
     "test:structure": "bun scripts/validate-structure.ts",
