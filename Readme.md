@@ -32,7 +32,7 @@ React apps are single-page by default and rely on client-side rendering, which c
 
 This project delivers true static output with selective hydration—no server runtime, no SPA drawbacks, just plain HTML plus targeted interactivity.
 
-The whole purpose of this is to fasten and control developer journey towards pure SSG because if you don't need a frameework now you may consider it for future cases but if you don't need a framework at all may be it is better o find another soluiion and it always better to strive for simplicity
+The whole purpose of this is to fasten and control developer journey towards pure SSG because if you don't need a frameework now you may consider it for future cases but if you don't need a framework at all may be it is better to find another solution and it is always better to strive for simplicity
 
 ## Philosophy
 
