@@ -1,8 +1,8 @@
-# **EJS-Vite Framework (With Taillwind)**
+Here’s an updated, polished README draft incorporating your existing content and organizing it clearly with a few minor grammar/style fixes and formatting for consistency:
 
-A strict-structure, component-driven static-site generator using EJS templates and Vite bundling, with predictable client-side state and automated page-/component-scaffolding.
+# **EJS-Vite Framework (With Tailwind CSS)**
 
----
+A strict-structure, component-driven static-site generator using EJS templates and Vite bundling, with predictable client-side state and automated page/component scaffolding.
 
 ## The Problem I’m Trying to Solve
 
@@ -22,17 +22,15 @@ This framework provides:
 - A singleton event-based store for shared state
 - Automatic validation before every build
 
----
+## Why Not React or Next.js? (A Critical Perspective for This Use Case)
 
-## Why Not React or Next.js (Just a critical thinking about a specific case)
+Next.js is fundamentally a server framework; squeezing only static site generation (SSG) from it adds server-side complexity you don’t need when you only want static HTML.
 
-Next.js is fundamentally a server framework; squeezing only SSG from it adds server-side complexity you don’t need when you only want static HTML.
+React apps are single-page by default and rely heavily on client-side rendering, which can hurt SEO and initial load performance compared to fully pre-rendered pages.
 
-React apps are single-page by default and rely on client-side rendering, which can hurt SEO and initial-load performance compared to fully pre-rendered pages.
+This project delivers true static output with selective hydration — no server runtime, no SPA drawbacks, just plain HTML plus targeted interactivity.
 
-This project delivers true static output with selective hydration—no server runtime, no SPA drawbacks, just plain HTML plus targeted interactivity.
-
-The whole purpose of this is to fasten and control developer journey towards pure SSG because if you don't need a frameework now you may consider it for future cases but if you don't need a framework at all may be it is better to find another solution and it is always better to strive for simplicity
+The whole purpose is to speed up and control the developer journey towards pure SSG. If you don't need a framework now, you might consider it for future cases, but if you don't need one at all, simplicity is always better.
 
 ## Philosophy
 
@@ -51,8 +49,6 @@ The whole purpose of this is to fasten and control developer journey towards pur
 5. **Design System at the Core**
    Shared UI pieces live under `design-system`, self-contained and dependency-free.
 
----
-
 ## Project Structure
 
 - **src/pages/**
@@ -66,8 +62,7 @@ The whole purpose of this is to fasten and control developer journey towards pur
   Same rules as pages, but for the global layout.
 
 - **src/design-system/**
-  Holds reusable components.
-  Each component folder contains only its `.component.ejs` template.
+  Holds reusable components. Each component folder contains only its `.component.ejs` template.
 
 - **src/lib/**
   Core utilities:
@@ -77,8 +72,6 @@ The whole purpose of this is to fasten and control developer journey towards pur
 
 - **src/main.ts**
   Imports page and layout client scripts to hydrate on load.
-
----
 
 ## Core Rules (Enforced by Validation Script)
 
@@ -110,8 +103,6 @@ The whole purpose of this is to fasten and control developer journey towards pur
 6. **Automated Validation**
    Run the validation before building. Any rule violation prints `✗` and aborts. Success prints `✓ Structure validation passed`.
 
----
-
 ## CLI Commands
 
 - **Generate a new page**
@@ -132,19 +123,15 @@ The whole purpose of this is to fasten and control developer journey towards pur
 - **Build for production**
   `npm run build`
 
----
-
 ## Global Store (Shared State)
 
 Use the singleton `GlobalStore` for cross-component state:
 
-- Register a state key once, e.g. `cartCount`
+- Register a state key once, e.g., `cartCount`
 - Update it from any component
 - Subscribe to changes in any component
 
 This avoids global variables and keeps state changes predictable and traceable.
-
----
 
 ## How to Use
 
@@ -155,3 +142,5 @@ This avoids global variables and keeps state changes predictable and traceable.
 - Share state via the `GlobalStore` singleton.
 - Run validation to catch mistakes automatically.
 - Build once; deploy static HTML anywhere.
+
+If you want, I can help generate a Markdown README file you can save and commit. Would you like that?
