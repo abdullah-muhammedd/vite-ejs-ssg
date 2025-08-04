@@ -1,0 +1,16 @@
+<!--
+  Shared component: button
+  Usage:
+    <%- include('src/lib/components/button/button.component.ejs', {
+      text: 'Custom Text',
+      extraClasses: 'bg-blue-500 text-white'
+    }) %>
+
+  Notes:
+    - Pass data via the second argument to 'include'.
+    - Extend or override styles using 'extraClasses'.
+    - For interactive behavior, create a page-specific client script
+      (e.g., in a page's .client.ts) targeting this component by selector.
+-->
+
+<div class="<%= extraClasses || '' %>" data-button><%= text || 'Button' %></div>
