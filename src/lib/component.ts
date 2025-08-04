@@ -1,4 +1,3 @@
-// lib/component.ts
 export abstract class Component {
   protected root: HTMLElement;
 

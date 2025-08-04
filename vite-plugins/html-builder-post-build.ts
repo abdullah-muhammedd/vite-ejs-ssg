@@ -7,7 +7,7 @@ export default function htmlBuilderPostBuild(): Plugin {
     name: 'html-builder-post-build',
     apply: 'build',
     async writeBundle() {
-      console.log('✅ Vite build complete – running HTML builder now');
+      console.log('Vite build complete – running HTML builder now');
       await runHtmlBuilder();
     },
   };
