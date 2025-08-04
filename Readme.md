@@ -1,4 +1,4 @@
-**EJS-Vite Framework**
+# **EJS-Vite Framework (With Taillwind)**
 
 A strict-structure, component-driven static-site generator using EJS templates and Vite bundling, with predictable client-side state and automated page-/component-scaffolding.
 
