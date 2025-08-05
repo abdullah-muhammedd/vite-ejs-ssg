@@ -1,4 +1,3 @@
-Here’s an updated, polished README draft incorporating your existing content and organizing it clearly with a few minor grammar/style fixes and formatting for consistency:
 
 # **EJS-Vite Framework (With Tailwind CSS)**
 
@@ -142,5 +141,3 @@ This avoids global variables and keeps state changes predictable and traceable.
 - Share state via the `GlobalStore` singleton.
 - Run validation to catch mistakes automatically.
 - Build once; deploy static HTML anywhere.
-
-If you want, I can help generate a Markdown README file you can save and commit. Would you like that?
