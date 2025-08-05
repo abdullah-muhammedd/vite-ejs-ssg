@@ -20,6 +20,7 @@ export default function htmlBuilderPostBuild(): Plugin {
     async writeBundle() {
       console.log('Vite build complete – running HTML builder now');
       await htmlBuild();
+      process.exit(0);
     },
   };
 }
