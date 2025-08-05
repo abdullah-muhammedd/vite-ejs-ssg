@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
-import htmlBuilderDev from './vite-plugins/html-builder-dev.plugin.js';
 import htmlBuilderPostBuild from './vite-plugins/html-builder-post-build.js';
 import path from 'node:path';
 
 export default defineConfig({
   build: {
+    watch: {
+      include: ['src/**/*'],
+      exclude: ['node_modules/**/*', 'dist/**/*'],
+    },
     rollupOptions: {
       input: [
         'src/styles.css',
@@ -17,7 +20,7 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
   },
-  plugins: [tailwindcss(), htmlBuilderDev(), htmlBuilderPostBuild()],
+  plugins: [tailwindcss(), htmlBuilderPostBuild()],
   server: {
     port: 4000,
     strictPort: true,

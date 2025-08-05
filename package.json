@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite build --watch & vite",
     "build": "vite build",
     "preview": "vite preview",
     "gen:page": "bun scripts/gen-page.ts",
